@@ -540,6 +540,54 @@ NAN_METHOD(NJSWallet::getCurrency) {
     }
 
     Nan::DefineOwnProperty(arg_0, Nan::New<String>("tezosLikeNetworkParameters").ToLocalChecked(), arg_0_9);
+    Local<Value> arg_0_10;
+    if(result.cosmosLikeNetworkParameters)
+    {
+        auto arg_0_10_optional = (result.cosmosLikeNetworkParameters).value();
+        auto arg_0_10_tmp = Nan::New<Object>();
+        auto arg_0_10_tmp_1 = Nan::New<String>(arg_0_10_optional.Identifier).ToLocalChecked();
+        Nan::DefineOwnProperty(arg_0_10_tmp, Nan::New<String>("Identifier").ToLocalChecked(), arg_0_10_tmp_1);
+        auto arg_0_10_tmp_2 = Nan::New<String>(arg_0_10_optional.MessagePrefix).ToLocalChecked();
+        Nan::DefineOwnProperty(arg_0_10_tmp, Nan::New<String>("MessagePrefix").ToLocalChecked(), arg_0_10_tmp_2);
+        Local<Array> arg_0_10_tmp_3 = Nan::New<Array>();
+        for(size_t arg_0_10_tmp_3_id = 0; arg_0_10_tmp_3_id < arg_0_10_optional.XPUBVersion.size(); arg_0_10_tmp_3_id++)
+        {
+            auto arg_0_10_tmp_3_elem = Nan::New<Uint32>(arg_0_10_optional.XPUBVersion[arg_0_10_tmp_3_id]);
+            arg_0_10_tmp_3->Set((int)arg_0_10_tmp_3_id,arg_0_10_tmp_3_elem);
+        }
+
+        Nan::DefineOwnProperty(arg_0_10_tmp, Nan::New<String>("XPUBVersion").ToLocalChecked(), arg_0_10_tmp_3);
+        Local<Array> arg_0_10_tmp_4 = Nan::New<Array>();
+        for(size_t arg_0_10_tmp_4_id = 0; arg_0_10_tmp_4_id < arg_0_10_optional.PubKeyPrefix.size(); arg_0_10_tmp_4_id++)
+        {
+            auto arg_0_10_tmp_4_elem = Nan::New<Uint32>(arg_0_10_optional.PubKeyPrefix[arg_0_10_tmp_4_id]);
+            arg_0_10_tmp_4->Set((int)arg_0_10_tmp_4_id,arg_0_10_tmp_4_elem);
+        }
+
+        Nan::DefineOwnProperty(arg_0_10_tmp, Nan::New<String>("PubKeyPrefix").ToLocalChecked(), arg_0_10_tmp_4);
+        Local<Array> arg_0_10_tmp_5 = Nan::New<Array>();
+        for(size_t arg_0_10_tmp_5_id = 0; arg_0_10_tmp_5_id < arg_0_10_optional.AddressPrefix.size(); arg_0_10_tmp_5_id++)
+        {
+            auto arg_0_10_tmp_5_elem = Nan::New<Uint32>(arg_0_10_optional.AddressPrefix[arg_0_10_tmp_5_id]);
+            arg_0_10_tmp_5->Set((int)arg_0_10_tmp_5_id,arg_0_10_tmp_5_elem);
+        }
+
+        Nan::DefineOwnProperty(arg_0_10_tmp, Nan::New<String>("AddressPrefix").ToLocalChecked(), arg_0_10_tmp_5);
+        auto arg_0_10_tmp_6 = Nan::New<String>(arg_0_10_optional.ChainId).ToLocalChecked();
+        Nan::DefineOwnProperty(arg_0_10_tmp, Nan::New<String>("ChainId").ToLocalChecked(), arg_0_10_tmp_6);
+        Local<Array> arg_0_10_tmp_7 = Nan::New<Array>();
+        for(size_t arg_0_10_tmp_7_id = 0; arg_0_10_tmp_7_id < arg_0_10_optional.AdditionalCIPs.size(); arg_0_10_tmp_7_id++)
+        {
+            auto arg_0_10_tmp_7_elem = Nan::New<String>(arg_0_10_optional.AdditionalCIPs[arg_0_10_tmp_7_id]).ToLocalChecked();
+            arg_0_10_tmp_7->Set((int)arg_0_10_tmp_7_id,arg_0_10_tmp_7_elem);
+        }
+
+        Nan::DefineOwnProperty(arg_0_10_tmp, Nan::New<String>("AdditionalCIPs").ToLocalChecked(), arg_0_10_tmp_7);
+
+        arg_0_10 = arg_0_10_tmp;
+    }
+
+    Nan::DefineOwnProperty(arg_0, Nan::New<String>("cosmosLikeNetworkParameters").ToLocalChecked(), arg_0_10);
 
 
     //Return result

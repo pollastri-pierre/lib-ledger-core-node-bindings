@@ -7,6 +7,7 @@
 
 #include "../include/../utils/optional.hpp"
 #include "../include/BitcoinLikeNetworkParameters.hpp"
+#include "../include/CosmosLikeNetworkParameters.hpp"
 #include "../include/Currency.hpp"
 #include "../include/CurrencyUnit.hpp"
 #include "../include/EthereumLikeNetworkParameters.hpp"
@@ -16,6 +17,7 @@
 #include "../include/WalletType.hpp"
 #include "NJSAmountCpp.hpp"
 #include "NJSBitcoinLikeOperationCpp.hpp"
+#include "NJSCosmosLikeOperationCpp.hpp"
 #include "NJSEthereumLikeOperationCpp.hpp"
 #include "NJSPreferencesCpp.hpp"
 #include "NJSRippleLikeOperationCpp.hpp"
@@ -136,6 +138,12 @@ private:
      */
     static NAN_METHOD(asTezosLikeOperation);
 
+    /**
+     *Convert operation as Cosmos operation
+     *@return CosmosLikeOperation object
+     */
+    static NAN_METHOD(asCosmosLikeOperation);
+
     /** Same as isInstanceOfBitcoinLikeOperation for bitcoin. */
     static NAN_METHOD(isInstanceOfBitcoinLikeOperation);
 
@@ -147,6 +155,9 @@ private:
 
     /** Same as isInstanceOfTezosLikeOperation for tezos. */
     static NAN_METHOD(isInstanceOfTezosLikeOperation);
+
+    /** Same as isInstanceOfCosmosLikeOperation for cosmos. */
+    static NAN_METHOD(isInstanceOfCosmosLikeOperation);
 
     /**
      * Tells if the operation is complete.

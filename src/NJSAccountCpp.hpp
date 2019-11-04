@@ -12,6 +12,7 @@
 #include "NJSAmountListCallback.hpp"
 #include "NJSBitcoinLikeAccountCpp.hpp"
 #include "NJSBlockCallback.hpp"
+#include "NJSCosmosLikeAccountCpp.hpp"
 #include "NJSErrorCodeCallback.hpp"
 #include "NJSEthereumLikeAccountCpp.hpp"
 #include "NJSEventBusCpp.hpp"
@@ -117,6 +118,12 @@ private:
     static NAN_METHOD(asTezosLikeAccount);
 
     /**
+     * Turn the account into an Cosmos one, allowing operations to be performerd on the Cosmos
+     * network.
+     */
+    static NAN_METHOD(asCosmosLikeAccount);
+
+    /**
      * Check if account is a Bitcoin one.
      * @return bool
      */
@@ -133,6 +140,12 @@ private:
      * @return bool
      */
     static NAN_METHOD(isInstanceOfRippleLikeAccount);
+
+    /**
+     * Check if account is a Cosmos one.
+     * @return bool
+     */
+    static NAN_METHOD(isInstanceOfCosmosLikeAccount);
 
     /**TODO */
     static NAN_METHOD(getFreshPublicAddresses);

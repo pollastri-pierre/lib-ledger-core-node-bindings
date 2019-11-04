@@ -4,14 +4,21 @@
 #include <nan.h>
 #include <node.h>
 
+#include "NJSCosmosLikeTransactionCpp.hpp"
+#include "NJSCosmosLikeOperationCpp.hpp"
+#include "NJSCosmosLikeBlockCpp.hpp"
+#include "NJSCosmosLikeTransactionBuilderCpp.hpp"
+#include "NJSCosmosLikeTransactionCallback.hpp"
+#include "NJSCosmosLikeAccountCpp.hpp"
+#include "NJSStringCallback.hpp"
+#include "NJSBigIntCallback.hpp"
+#include "NJSCosmosConfigurationDefaultsCpp.hpp"
 #include "NJSTezosLikeTransactionCpp.hpp"
 #include "NJSTezosLikeOperationCpp.hpp"
 #include "NJSTezosLikeBlockCpp.hpp"
 #include "NJSTezosLikeTransactionBuilderCpp.hpp"
 #include "NJSTezosLikeTransactionCallback.hpp"
 #include "NJSTezosLikeAccountCpp.hpp"
-#include "NJSStringCallback.hpp"
-#include "NJSBigIntCallback.hpp"
 #include "NJSTezosLikeOriginatedAccountCpp.hpp"
 #include "NJSAmountCallback.hpp"
 #include "NJSAmountListCallback.hpp"
@@ -87,6 +94,8 @@
 #include "NJSEthereumLikeAccountCpp.hpp"
 #include "NJSBitcoinLikeScriptChunkCpp.hpp"
 #include "NJSBitcoinLikeScriptCpp.hpp"
+#include "NJSCosmosLikeAddressCpp.hpp"
+#include "NJSCosmosLikeExtendedPublicKeyCpp.hpp"
 #include "NJSTezosLikeAddressCpp.hpp"
 #include "NJSTezosLikeExtendedPublicKeyCpp.hpp"
 #include "NJSRippleLikeAddressCpp.hpp"
@@ -138,14 +147,21 @@ using namespace node;
 static void initAll(Local<Object> target)
 {
     Nan::HandleScope scope;
+    NJSCosmosLikeTransaction::Initialize(target);
+    NJSCosmosLikeOperation::Initialize(target);
+    NJSCosmosLikeBlock::Initialize(target);
+    NJSCosmosLikeTransactionBuilder::Initialize(target);
+    NJSCosmosLikeTransactionCallback::Initialize(target);
+    NJSCosmosLikeAccount::Initialize(target);
+    NJSStringCallback::Initialize(target);
+    NJSBigIntCallback::Initialize(target);
+    NJSCosmosConfigurationDefaults::Initialize(target);
     NJSTezosLikeTransaction::Initialize(target);
     NJSTezosLikeOperation::Initialize(target);
     NJSTezosLikeBlock::Initialize(target);
     NJSTezosLikeTransactionBuilder::Initialize(target);
     NJSTezosLikeTransactionCallback::Initialize(target);
     NJSTezosLikeAccount::Initialize(target);
-    NJSStringCallback::Initialize(target);
-    NJSBigIntCallback::Initialize(target);
     NJSTezosLikeOriginatedAccount::Initialize(target);
     NJSAmountCallback::Initialize(target);
     NJSAmountListCallback::Initialize(target);
@@ -221,6 +237,8 @@ static void initAll(Local<Object> target)
     NJSEthereumLikeAccount::Initialize(target);
     NJSBitcoinLikeScriptChunk::Initialize(target);
     NJSBitcoinLikeScript::Initialize(target);
+    NJSCosmosLikeAddress::Initialize(target);
+    NJSCosmosLikeExtendedPublicKey::Initialize(target);
     NJSTezosLikeAddress::Initialize(target);
     NJSTezosLikeExtendedPublicKey::Initialize(target);
     NJSRippleLikeAddress::Initialize(target);

@@ -412,6 +412,32 @@ NAN_METHOD(NJSOperation::asTezosLikeOperation) {
     //Return result
     info.GetReturnValue().Set(arg_0);
 }
+NAN_METHOD(NJSOperation::asCosmosLikeOperation) {
+
+    //Check if method called with right number of arguments
+    if(info.Length() != 0)
+    {
+        return Nan::ThrowError("NJSOperation::asCosmosLikeOperation needs 0 arguments");
+    }
+
+    //Check if parameters have correct types
+
+    //Unwrap current object and retrieve its Cpp Implementation
+    auto cpp_impl = djinni::js::ObjectWrapper<ledger::core::api::Operation>::Unwrap(info.This());
+    if(!cpp_impl)
+    {
+        return Nan::ThrowError("NJSOperation::asCosmosLikeOperation : implementation of Operation is not valid");
+    }
+
+    auto result = cpp_impl->asCosmosLikeOperation();
+
+    //Wrap result in node object
+    auto arg_0 = NJSCosmosLikeOperation::wrap(result);
+
+
+    //Return result
+    info.GetReturnValue().Set(arg_0);
+}
 NAN_METHOD(NJSOperation::isInstanceOfBitcoinLikeOperation) {
 
     //Check if method called with right number of arguments
@@ -505,6 +531,31 @@ NAN_METHOD(NJSOperation::isInstanceOfTezosLikeOperation) {
     }
 
     auto result = cpp_impl->isInstanceOfTezosLikeOperation();
+
+    //Wrap result in node object
+    auto arg_0 = Nan::New<Boolean>(result);
+
+    //Return result
+    info.GetReturnValue().Set(arg_0);
+}
+NAN_METHOD(NJSOperation::isInstanceOfCosmosLikeOperation) {
+
+    //Check if method called with right number of arguments
+    if(info.Length() != 0)
+    {
+        return Nan::ThrowError("NJSOperation::isInstanceOfCosmosLikeOperation needs 0 arguments");
+    }
+
+    //Check if parameters have correct types
+
+    //Unwrap current object and retrieve its Cpp Implementation
+    auto cpp_impl = djinni::js::ObjectWrapper<ledger::core::api::Operation>::Unwrap(info.This());
+    if(!cpp_impl)
+    {
+        return Nan::ThrowError("NJSOperation::isInstanceOfCosmosLikeOperation : implementation of Operation is not valid");
+    }
+
+    auto result = cpp_impl->isInstanceOfCosmosLikeOperation();
 
     //Wrap result in node object
     auto arg_0 = Nan::New<Boolean>(result);
@@ -784,6 +835,54 @@ NAN_METHOD(NJSOperation::getCurrency) {
     }
 
     Nan::DefineOwnProperty(arg_0, Nan::New<String>("tezosLikeNetworkParameters").ToLocalChecked(), arg_0_9);
+    Local<Value> arg_0_10;
+    if(result.cosmosLikeNetworkParameters)
+    {
+        auto arg_0_10_optional = (result.cosmosLikeNetworkParameters).value();
+        auto arg_0_10_tmp = Nan::New<Object>();
+        auto arg_0_10_tmp_1 = Nan::New<String>(arg_0_10_optional.Identifier).ToLocalChecked();
+        Nan::DefineOwnProperty(arg_0_10_tmp, Nan::New<String>("Identifier").ToLocalChecked(), arg_0_10_tmp_1);
+        auto arg_0_10_tmp_2 = Nan::New<String>(arg_0_10_optional.MessagePrefix).ToLocalChecked();
+        Nan::DefineOwnProperty(arg_0_10_tmp, Nan::New<String>("MessagePrefix").ToLocalChecked(), arg_0_10_tmp_2);
+        Local<Array> arg_0_10_tmp_3 = Nan::New<Array>();
+        for(size_t arg_0_10_tmp_3_id = 0; arg_0_10_tmp_3_id < arg_0_10_optional.XPUBVersion.size(); arg_0_10_tmp_3_id++)
+        {
+            auto arg_0_10_tmp_3_elem = Nan::New<Uint32>(arg_0_10_optional.XPUBVersion[arg_0_10_tmp_3_id]);
+            arg_0_10_tmp_3->Set((int)arg_0_10_tmp_3_id,arg_0_10_tmp_3_elem);
+        }
+
+        Nan::DefineOwnProperty(arg_0_10_tmp, Nan::New<String>("XPUBVersion").ToLocalChecked(), arg_0_10_tmp_3);
+        Local<Array> arg_0_10_tmp_4 = Nan::New<Array>();
+        for(size_t arg_0_10_tmp_4_id = 0; arg_0_10_tmp_4_id < arg_0_10_optional.PubKeyPrefix.size(); arg_0_10_tmp_4_id++)
+        {
+            auto arg_0_10_tmp_4_elem = Nan::New<Uint32>(arg_0_10_optional.PubKeyPrefix[arg_0_10_tmp_4_id]);
+            arg_0_10_tmp_4->Set((int)arg_0_10_tmp_4_id,arg_0_10_tmp_4_elem);
+        }
+
+        Nan::DefineOwnProperty(arg_0_10_tmp, Nan::New<String>("PubKeyPrefix").ToLocalChecked(), arg_0_10_tmp_4);
+        Local<Array> arg_0_10_tmp_5 = Nan::New<Array>();
+        for(size_t arg_0_10_tmp_5_id = 0; arg_0_10_tmp_5_id < arg_0_10_optional.AddressPrefix.size(); arg_0_10_tmp_5_id++)
+        {
+            auto arg_0_10_tmp_5_elem = Nan::New<Uint32>(arg_0_10_optional.AddressPrefix[arg_0_10_tmp_5_id]);
+            arg_0_10_tmp_5->Set((int)arg_0_10_tmp_5_id,arg_0_10_tmp_5_elem);
+        }
+
+        Nan::DefineOwnProperty(arg_0_10_tmp, Nan::New<String>("AddressPrefix").ToLocalChecked(), arg_0_10_tmp_5);
+        auto arg_0_10_tmp_6 = Nan::New<String>(arg_0_10_optional.ChainId).ToLocalChecked();
+        Nan::DefineOwnProperty(arg_0_10_tmp, Nan::New<String>("ChainId").ToLocalChecked(), arg_0_10_tmp_6);
+        Local<Array> arg_0_10_tmp_7 = Nan::New<Array>();
+        for(size_t arg_0_10_tmp_7_id = 0; arg_0_10_tmp_7_id < arg_0_10_optional.AdditionalCIPs.size(); arg_0_10_tmp_7_id++)
+        {
+            auto arg_0_10_tmp_7_elem = Nan::New<String>(arg_0_10_optional.AdditionalCIPs[arg_0_10_tmp_7_id]).ToLocalChecked();
+            arg_0_10_tmp_7->Set((int)arg_0_10_tmp_7_id,arg_0_10_tmp_7_elem);
+        }
+
+        Nan::DefineOwnProperty(arg_0_10_tmp, Nan::New<String>("AdditionalCIPs").ToLocalChecked(), arg_0_10_tmp_7);
+
+        arg_0_10 = arg_0_10_tmp;
+    }
+
+    Nan::DefineOwnProperty(arg_0, Nan::New<String>("cosmosLikeNetworkParameters").ToLocalChecked(), arg_0_10);
 
 
     //Return result
@@ -850,10 +949,12 @@ void NJSOperation::Initialize(Local<Object> target) {
     Nan::SetPrototypeMethod(func_template,"asEthereumLikeOperation", asEthereumLikeOperation);
     Nan::SetPrototypeMethod(func_template,"asRippleLikeOperation", asRippleLikeOperation);
     Nan::SetPrototypeMethod(func_template,"asTezosLikeOperation", asTezosLikeOperation);
+    Nan::SetPrototypeMethod(func_template,"asCosmosLikeOperation", asCosmosLikeOperation);
     Nan::SetPrototypeMethod(func_template,"isInstanceOfBitcoinLikeOperation", isInstanceOfBitcoinLikeOperation);
     Nan::SetPrototypeMethod(func_template,"isInstanceOfEthereumLikeOperation", isInstanceOfEthereumLikeOperation);
     Nan::SetPrototypeMethod(func_template,"isInstanceOfRippleLikeOperation", isInstanceOfRippleLikeOperation);
     Nan::SetPrototypeMethod(func_template,"isInstanceOfTezosLikeOperation", isInstanceOfTezosLikeOperation);
+    Nan::SetPrototypeMethod(func_template,"isInstanceOfCosmosLikeOperation", isInstanceOfCosmosLikeOperation);
     Nan::SetPrototypeMethod(func_template,"isComplete", isComplete);
     Nan::SetPrototypeMethod(func_template,"getWalletType", getWalletType);
     Nan::SetPrototypeMethod(func_template,"getCurrency", getCurrency);
